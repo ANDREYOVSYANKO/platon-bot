@@ -46,10 +46,14 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
+    print("🔥 Бот получил сообщение!")
+    print(f"📩 Текст: {message.text} | От пользователя: {message.chat.id}")
+
     article = message.text.strip()
     result = search_part(article)
+
     if result:
-               reply = (
+        reply = (
             f"🔹 {result['name']}\n"
             f"🔗 {result['url']}\n"
             f"❌ Старая цена: ~{result['old_price']} ₽~\n"
@@ -58,6 +62,7 @@ def handle_message(message):
         )
     else:
         reply = "К сожалению, не нашёл такой товар. Сейчас подключу менеджера..."
+
     bot.reply_to(message, reply)
 
 bot.infinity_polling()
