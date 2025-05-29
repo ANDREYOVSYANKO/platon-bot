@@ -49,11 +49,13 @@ def handle_message(message):
     article = message.text.strip()
     result = search_part(article)
     if result:
-        reply = f"🔹 {result['name']}
-"                 f"🔗 {result['url']}
-"                 f"❌ Старая цена: ~{result['old_price']} ₽~
-"                 f"✅ Скидка 30%
-"                 f"💰 Цена со скидкой: {result['final_price']} ₽"
+               reply = (
+            f"🔹 {result['name']}\n"
+            f"🔗 {result['url']}\n"
+            f"❌ Старая цена: ~{result['old_price']} ₽~\n"
+            f"✅ Скидка 30%\n"
+            f"💰 Цена со скидкой: {result['final_price']} ₽"
+        )
     else:
         reply = "К сожалению, не нашёл такой товар. Сейчас подключу менеджера..."
     bot.reply_to(message, reply)
